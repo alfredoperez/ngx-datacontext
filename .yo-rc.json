@@ -1,7 +1,14 @@
 {
-  "generator-angular2-library": {
-    "promptValues": {
-      "gitRepositoryUrl": "https://github.com/username/repo"
-    }
+  "generator-angular-library": {
+    "githubUsername": "alfredoperez",
+    "githubRepoName": "ngx-datacontext",
+    "npmModuleName": "ngx-datacontext",
+    "moduleGlobal": "ngxDatacontext",
+    "ngModuleName": "NgxDatacontextModule",
+    "selectorPrefix": "ngx",
+    "projectTitle": "Ngx-DataContext",
+    "projectDescription": "Tools to easily create a datacontext for different types of server",
+    "authorName": "Alfredo Perez",
+    "packageManager": "yarn"
   }
 }

@@ -1,0 +1,257 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-datacontext documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	    <link rel="stylesheet" href="./styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">ngx-datacontext documentation</a>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="./index.html">ngx-datacontext documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="./overview.html" 
+                                         href="./overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                                <li class="link">
+                                  <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                        <a href="./license.html"
+                                    >
+                                        <span class="fa fa-file-text-o"></span>LICENSE
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                        <img src=".//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="./index.html">ngx-datacontext documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./index.html"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="./overview.html" 
+                                                href="./overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                                       <li class="link">
+                                         <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                               <a href="./license.html"
+                                           >
+                                               <span class="fa fa-file-text-o"></span>LICENSE
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/website/" target="_blank">
+                                               <img src=".//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
+               </div>
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="ngx-datacontext">Ngx-DataContext</h1>
+<p><a href="https://travis-ci.org/alfredoperez/ngx-datacontext">undefined</a>
+<a href="https://codecov.io/gh/alfredoperez/ngx-datacontext">undefined</a>
+<a href="http://badge.fury.io/js/ngx-datacontext">undefined</a>
+<a href="https://david-dm.org/alfredoperez/ngx-datacontext?type=dev">undefined</a>
+<a href="https://github.com/alfredoperez/ngx-datacontext/issues">undefined</a>
+<a href="https://github.com/alfredoperez/ngx-datacontext/stargazers">undefined</a>
+<a href="https://raw.githubusercontent.com/alfredoperez/ngx-datacontext/master/LICENSE">undefined</a></p>
+<h2 id="demo">Demo</h2>
+<p><a href="https://alfredoperez.github.io/ngx-datacontext/">https://alfredoperez.github.io/ngx-datacontext/</a></p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#development">Development</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="about">About</h2>
+<p>Tools to easily create a datacontext for different types of server</p>
+<h2 id="installation">Installation</h2>
+<p>Install through npm:</p>
+<pre class="line-numbers"><code class="language-none">npm install --save ngx-datacontext</code></pre><p>Then include in your apps module:</p>
+<pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
+import { NgxDatacontextModule } from &#39;ngx-datacontext&#39;;
+
+&#64;NgModule({
+  imports: [
+    NgxDatacontextModule.forRoot()
+  ]
+})
+export class MyModule {}</code></pre><p>Finally use in one of your apps components:</p>
+<pre class="line-numbers"><code class="language-typescript">import { Component } from &#39;&#64;angular/core&#39;;
+
+&#64;Component({
+  template: &#39;&lt;hello-world&gt;&lt;/hello-world&gt;&#39;
+})
+export class MyComponent {}</code></pre><p>You may also find it useful to view the <a href="https://github.com/alfredoperez/ngx-datacontext/blob/master/demo/demo.component.ts">demo source</a>.</p>
+<h3 id="usage-without-a-module-bundler">Usage without a module bundler</h3>
+<pre class="line-numbers"><code class="language-none">&lt;script src=&quot;node_modules/ngx-datacontext/bundles/ngx-datacontext.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    // everything is exported ngxDatacontext namespace
+&lt;/script&gt;</code></pre><h2 id="documentation">Documentation</h2>
+<p>All documentation is auto-generated from the source via <a href="https://compodoc.github.io/compodoc/">compodoc</a> and can be viewed here:
+<a href="https://alfredoperez.github.io/ngx-datacontext/docs/">https://alfredoperez.github.io/ngx-datacontext/docs/</a></p>
+<h2 id="development">Development</h2>
+<h3 id="prepare-your-environment">Prepare your environment</h3>
+<ul>
+<li>Install <a href="http://nodejs.org/">Node.js</a> and <a href="https://yarnpkg.com/en/docs/install">yarn</a></li>
+<li>Install local dev dependencies: <code>yarn</code> while current directory is this repo</li>
+</ul>
+<h3 id="development-server">Development server</h3>
+<p>Run <code>yarn start</code> to start a development server on port 8000 with auto reload + tests.</p>
+<h3 id="testing">Testing</h3>
+<p>Run <code>yarn test</code> to run tests once or <code>yarn run test:watch</code> to continually run tests.</p>
+<h3 id="release">Release</h3>
+<ul>
+<li>Bump the version in package.json (once the module hits 1.0 this will become automatic)<pre class="line-numbers"><code class="language-bash">yarn run release</code></pre></li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+           </div>
+       </div>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script>var COMPODOC_CURRENT_PAGE_DEPTH = 0;</script>
+
+       <script src="./js/search/search.js"></script>
+       <script src="./js/search/lunr.min.js"></script>
+       <script src="./js/search/search-lunr.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+       <script src="./js/search/search_index.js"></script>
+
+    </body>
+</html>
