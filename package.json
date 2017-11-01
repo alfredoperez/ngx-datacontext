@@ -40,7 +40,9 @@
     }
   },
   "commitlint": {
-    "extends": ["@commitlint/config-angular"]
+    "extends": [
+      "@commitlint/config-angular"
+    ]
   },
   "repository": {
     "type": "git",
@@ -120,5 +122,8 @@
   },
   "peerDependencies": {
     "@angular/core": ">=4.0.0 <6.0.0"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.80"
   }
 }
