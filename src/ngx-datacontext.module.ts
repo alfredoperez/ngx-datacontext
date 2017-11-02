@@ -1,11 +1,10 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HelloWorldComponent } from './hello-world.component';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 @NgModule({
-  declarations: [HelloWorldComponent],
+  declarations: [],
   imports: [CommonModule],
-  exports: [HelloWorldComponent]
+  exports: []
 })
 export class NgxDatacontextModule {
   static forRoot(): ModuleWithProviders {

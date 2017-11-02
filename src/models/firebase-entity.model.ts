@@ -1,12 +1,13 @@
-import { IRecord } from './contracts';
 import { BaseEntity } from './entity.model';
 
 export class FirebaseEntity extends BaseEntity {
+  id: string;
+  name: string;
 
-    public toRecord(): IRecord {
-      return {
-        id: this.key ,
-        name: this['name']
-      };
-    }
+  toRecord(): any {
+    return {
+      id: this.key,
+      name: this['name']
+    };
   }
+}
