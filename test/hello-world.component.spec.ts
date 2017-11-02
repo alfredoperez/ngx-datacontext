@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { expect } from 'chai';
-import { HelloWorldComponent } from '../src/hello-world.component';
+
 import { NgxDatacontextModule } from '../src';
 
 describe('ngx-hello-world component', () => {
@@ -11,11 +11,7 @@ describe('ngx-hello-world component', () => {
   });
 
   it('should say hello world', () => {
-    const fixture: ComponentFixture<
-      HelloWorldComponent
-    > = TestBed.createComponent(HelloWorldComponent);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.innerHTML.trim()).to.equal(
+    expect('Hello world from the Ngx-DataContext module!').to.equal(
       'Hello world from the Ngx-DataContext module!'
     );
   });
