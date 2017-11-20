@@ -49,6 +49,7 @@
     "url": "git+https://github.com/alfredoperez/ngx-datacontext.git"
   },
   "keywords": [
+    "angular5",
     "angular4",
     "angular2",
     "angular"
@@ -60,13 +61,13 @@
   },
   "homepage": "https://github.com/alfredoperez/ngx-datacontext#readme",
   "devDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/language-service": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/compiler-cli": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/language-service": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/platform-browser-dynamic": "^5.0.0",
     "@commitlint/cli": "^4.1.0",
     "@commitlint/config-angular": "^3.1.1",
     "@commitlint/prompt": "^4.1.0",
