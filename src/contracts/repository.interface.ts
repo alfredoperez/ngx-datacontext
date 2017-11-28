@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { BaseEntity } from '../models/entity.model';
 
 export interface Repository<T extends BaseEntity> {
-  getById(): Observable<T>;
+  getById(id: string): Observable<T>;
 
   getAll(): Observable<Array<T>>;
 
@@ -11,7 +11,7 @@ export interface Repository<T extends BaseEntity> {
 
   create(entity: T): Observable<T>;
 
-  remove(entity: T): Observable<boolean>;
+  remove(entity: T): Promise<void>;
 
-  update(): Observable<boolean>;
+  update(entity: T): Observable<T>;
 }

@@ -1,4 +1,4 @@
-import { DataSource } from './DataSource.interface';
+import { DataSource } from './dataSource.interface';
 
 export interface DataContextConfig {
   dataSources?: Array<DataSource>;

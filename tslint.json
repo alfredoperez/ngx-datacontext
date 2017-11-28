@@ -200,6 +200,7 @@
     ],
     "align": [
       true,
+      "parameters",
       "statements"
     ],
     "trailing-comma": [

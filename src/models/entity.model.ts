@@ -2,12 +2,28 @@ import * as _ from 'lodash';
 
 export class BaseEntity {
   entityName: string;
-  key: string;
-
+  id: any;
+  private ignoredProperties: Array<string> = [
+    'entityName',
+    'deserialize',
+    'toRecord',
+    'deserializeEntity',
+    'isDate',
+    'ignoredProperties',
+    'getEntity'
+  ];
   constructor() {
     this.entityName = (this as any).$$name;
   }
+  getEntity(): BaseEntity {
+    const entity: any = {};
+    Object.keys(this).forEach((property: string) => {
+      if (this.ignoredProperties.indexOf(property) === -1)
+        entity[property] = (this as any)[property];
+    });
 
+    return entity;
+  }
   deserialize(input: any): BaseEntity {
     for (const property in input) {
       if (!input.hasOwnProperty(property)) continue;
@@ -32,7 +48,7 @@ export class BaseEntity {
     return this;
   }
   isNew(): boolean {
-    return this.key === undefined;
+    return this.id === undefined;
   }
 
   private deserializeEntity = (entity: any, data: any): any => {

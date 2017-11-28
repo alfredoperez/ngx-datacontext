@@ -1,10 +1,10 @@
-import * as webpack from 'webpack';
-import * as path from 'path';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import { AngularCompilerPlugin } from '@ngtools/webpack';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { getIfUtils, removeEmpty } from 'webpack-config-utils';
-import { AotPlugin } from '@ngtools/webpack';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as OfflinePlugin from 'offline-plugin';
+import * as path from 'path';
+import * as webpack from 'webpack';
+import { getIfUtils, removeEmpty } from 'webpack-config-utils';
 
 export default (environment = 'development') => {
 
@@ -29,10 +29,20 @@ export default (environment = 'development') => {
         options: {
           transpileOnly: true
         }
-      }, {
-        test: /\.ts$/,
-        loader: '@ngtools/webpack'
-      })])
+      },
+        ifDevelopment({
+          test: /\.scss$/,
+          use: [{
+            loader: 'style-loader' // creates style nodes from JS strings
+          }, {
+            loader: 'css-loader' // translates CSS into CommonJS
+          }, {
+            loader: 'sass-loader' // compiles Sass to CSS
+          }]
+        }), {
+          test: /\.ts$/,
+          loader: '@ngtools/webpack'
+        })])
     },
     resolve: {
       extensions: ['.ts', '.js']
@@ -46,8 +56,9 @@ export default (environment = 'development') => {
     },
     plugins: removeEmpty([
       ifProduction(new webpack.optimize.ModuleConcatenationPlugin()),
-      ifProduction(new AotPlugin({
-        tsConfigPath: './tsconfig-demo.json'
+      ifProduction(new AngularCompilerPlugin({
+        tsConfigPath: './tsconfig-demo.json',
+        sourceMap: true
       })),
       ifDevelopment(new webpack.HotModuleReplacementPlugin()),
       ifDevelopment(new ForkTsCheckerWebpackPlugin({

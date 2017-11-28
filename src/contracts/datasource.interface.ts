@@ -1,4 +1,4 @@
-import { BaseEntity } from './entity.model';
+import { BaseEntity } from '../models/entity.model';
 
 export interface DataSource {
   type: DataSourceType;

@@ -1,4 +1,7 @@
-import { Inject } from '@angular/core';
+import { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireList } from 'angularfire2/database/interfaces';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
@@ -8,46 +11,65 @@ import { FirebaseEntity } from '../models/firebase-entity.model';
 export class FirebaseRepository<T extends FirebaseEntity>
   implements Repository<FirebaseEntity> {
   sdkDb: any;
-  db: AngularFireDatabase;
-
+  angularfire: AngularFireDatabase;
+  itemsRef: AngularFireList<any>;
   constructor(
     public entity: FirebaseEntity,
-    @Inject(AngularFireDatabase) fbDb?: AngularFireDatabase,
-    @Inject(FirebaseApp) fb?: FirebaseApp
+    angularfire?: AngularFireDatabase,
+    fb?: FirebaseApp
   ) {
-    this.db = fbDb;
-    this.sdkDb = fb.database().ref('/');
+    if (angularfire !== undefined) {
+      this.itemsRef = angularfire.list(`${this.entity.entityName}`);
+      this.angularfire = angularfire;
+    }
+
+    if (fb !== undefined) this.sdkDb = fb.database().ref('/');
   }
 
-  getById(): Observable<T> {
-    throw new Error('Method not implemented.');
+  getById(id: string): Observable<T> {
+    return this.angularfire
+      .object(`${this.entity.entityName}/${id}`)
+      .valueChanges()
+      .map(this.handleEntityResponse);
   }
 
   getAll(): Observable<Array<T>> {
-    throw new Error('Method not implemented.');
+    return this.angularfire
+      .list(this.entity.entityName)
+      .valueChanges()
+      .map(this.handleCollectionResponse);
   }
 
   find(): Observable<Array<T>> {
     throw new Error('Method not implemented.');
   }
 
-  remove(): Observable<boolean> {
-    throw new Error('Method not implemented.');
+  remove(entity: FirebaseEntity): Promise<void> {
+    if (!entity) return Promise.resolve(undefined);
+
+    return this.angularfire
+      .object(`${entity.entityName}/${entity.id}`)
+      .remove();
   }
 
-  update(): Observable<boolean> {
-    throw new Error('Method not implemented.');
+  update(entity: FirebaseEntity): Observable<T> {
+    if (!entity) return Observable.of<T>();
+
+    const dataToSave: any = {};
+    dataToSave[`${entity.entityName}/${entity.id}`] = { ...entity.getEntity() };
+
+    return this.saveData(dataToSave);
   }
 
   create(entity: FirebaseEntity): Observable<T> {
-    if (!entity) return undefined;
+    if (!entity) return Observable.of<T>();
 
-    const dataToSave = {};
-    const newKey = this.sdkDb.child(entity.name).push().key;
-    const entityToSave = { ...entity };
-    entityToSave.key = newKey;
+    const dataToSave: any = {};
+    const newKey = this.sdkDb.child(entity.entityName).push().key;
+    const entityToSave = { ...entity.getEntity() };
+    entityToSave.id = newKey;
 
-    dataToSave[`${entity.$name}/ ${newKey}`] = entityToSave;
+    dataToSave[`${entity.entityName}/ ${newKey}`] = entityToSave;
 
     return this.saveData(dataToSave);
   }
@@ -68,4 +90,31 @@ export class FirebaseRepository<T extends FirebaseEntity>
 
     return subject.asObservable();
   }
+
+  private handleEntityResponse = (data: any): T => {
+    let result: T;
+
+    const target = _.cloneDeep(this.entity) as T;
+    target.deserialize(data);
+    result = target;
+
+    return result;
+  };
+
+  private handleCollectionResponse = (data: any): Array<T> => {
+    let result: Array<T> = [];
+    if (Array.isArray(data)) {
+      const collection: Array<T> = [];
+
+      data.forEach((item: any) => {
+        const target = _.cloneDeep(this.entity) as T;
+        target.deserialize(item);
+        collection.push(target);
+      });
+
+      result = collection;
+    }
+
+    return result;
+  };
 }
