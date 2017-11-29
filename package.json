@@ -1,6 +1,6 @@
 {
   "name": "ngx-datacontext",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Tools to easily create a datacontext for different types of server",
   "main": "./bundles/ngx-datacontext.umd.js",
   "module": "./index.js",
