@@ -45,7 +45,7 @@
                                     </a>
                                 </li>
                                 <li class="link">
-                                  <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                  <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                 </li>
                                 <li class="link">
                                         <a href="./changelog.html"
@@ -116,7 +116,7 @@
                                            </a>
                                        </li>
                                        <li class="link">
-                                         <a href="./index.html"  class="active" ><span class="fa fa-file-text-o"></span>README</a>
+                                         <a href="./index.html" ><span class="fa fa-file-text-o"></span>README</a>
                                        </li>
                                        <li class="link">
                                                <a href="./changelog.html"
@@ -159,67 +159,15 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="ngx-datacontext">Ngx-DataContext</h1>
-<p><a href="https://travis-ci.org/alfredoperez/ngx-datacontext"><img src="https://travis-ci.org/alfredoperez/ngx-datacontext.svg?branch=master" alt="Build Status" class="img-responsive"</a>
-<a href="https://codecov.io/gh/alfredoperez/ngx-datacontext"><img src="https://codecov.io/gh/alfredoperez/ngx-datacontext/branch/master/graph/badge.svg" alt="codecov" class="img-responsive"</a>
-<a href="http://badge.fury.io/js/ngx-datacontext"><img src="https://badge.fury.io/js/ngx-datacontext.svg" alt="npm version" class="img-responsive"</a>
-<a href="https://david-dm.org/alfredoperez/ngx-datacontext?type=dev"><img src="https://david-dm.org/alfredoperez/ngx-datacontext/dev-status.svg" alt="devDependency Status" class="img-responsive"</a>
-<a href="https://github.com/alfredoperez/ngx-datacontext/issues"><img src="https://img.shields.io/github/issues/alfredoperez/ngx-datacontext.svg" alt="GitHub issues" class="img-responsive"</a>
-<a href="https://github.com/alfredoperez/ngx-datacontext/stargazers"><img src="https://img.shields.io/github/stars/alfredoperez/ngx-datacontext.svg" alt="GitHub stars" class="img-responsive"</a>
-<a href="https://raw.githubusercontent.com/alfredoperez/ngx-datacontext/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license" class="img-responsive"</a></p>
-<h2 id="demo">Demo</h2>
-<p><a href="https://alfredoperez.github.io/ngx-datacontext/">https://alfredoperez.github.io/ngx-datacontext/</a></p>
-<h2 id="table-of-contents">Table of contents</h2>
+<h1 id="change-log">Change Log</h1>
+<p>All notable changes to this project will be documented in this file. See <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> for commit guidelines.</p>
+<p><a name="0.8.1"></a></p>
+<h2 id="0-8-1-2017-11-02-">0.8.1 (2017-11-02)</h2>
+<h3 id="bug-fixes">Bug Fixes</h3>
 <ul>
-<li><a href="#about">About</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#documentation">Documentation</a></li>
-<li><a href="#development">Development</a></li>
-<li><a href="#license">License</a></li>
+<li><strong>entity:</strong> Fix lint problems (<a href="https://github.com/alfredoperez/ngx-datacontext/commit/ee35783">ee35783</a>)</li>
+<li><strong>test:</strong> remove dependency to hello world component (<a href="https://github.com/alfredoperez/ngx-datacontext/commit/e3057d7">e3057d7</a>)</li>
 </ul>
-<h2 id="about">About</h2>
-<p>Tools to easily create a datacontext for different types of server</p>
-<h2 id="installation">Installation</h2>
-<p>Install through npm:</p>
-<pre class="line-numbers"><code class="language-none">npm install --save ngx-datacontext</code></pre><p>Then include in your apps module:</p>
-<pre class="line-numbers"><code class="language-typescript">import { NgModule } from &#39;&#64;angular/core&#39;;
-import { NgxDatacontextModule } from &#39;ngx-datacontext&#39;;
-
-&#64;NgModule({
-  imports: [
-    NgxDatacontextModule.forRoot()
-  ]
-})
-export class MyModule {}</code></pre><p>Finally use in one of your apps components:</p>
-<pre class="line-numbers"><code class="language-typescript">import { Component } from &#39;&#64;angular/core&#39;;
-
-&#64;Component({
-  template: &#39;&lt;hello-world&gt;&lt;/hello-world&gt;&#39;
-})
-export class MyComponent {}</code></pre><p>You may also find it useful to view the <a href="https://github.com/alfredoperez/ngx-datacontext/blob/master/demo/demo.component.ts">demo source</a>.</p>
-<h3 id="usage-without-a-module-bundler">Usage without a module bundler</h3>
-<pre class="line-numbers"><code class="language-none">&lt;script src=&quot;node_modules/ngx-datacontext/bundles/ngx-datacontext.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-    // everything is exported ngxDatacontext namespace
-&lt;/script&gt;</code></pre><h2 id="documentation">Documentation</h2>
-<p>All documentation is auto-generated from the source via <a href="https://compodoc.github.io/compodoc/">compodoc</a> and can be viewed here:
-<a href="https://alfredoperez.github.io/ngx-datacontext/docs/">https://alfredoperez.github.io/ngx-datacontext/docs/</a></p>
-<h2 id="development">Development</h2>
-<h3 id="prepare-your-environment">Prepare your environment</h3>
-<ul>
-<li>Install <a href="http://nodejs.org/">Node.js</a> and <a href="https://yarnpkg.com/en/docs/install">yarn</a></li>
-<li>Install local dev dependencies: <code>yarn</code> while current directory is this repo</li>
-</ul>
-<h3 id="development-server">Development server</h3>
-<p>Run <code>yarn start</code> to start a development server on port 8000 with auto reload + tests.</p>
-<h3 id="testing">Testing</h3>
-<p>Run <code>yarn test</code> to run tests once or <code>yarn run test:watch</code> to continually run tests.</p>
-<h3 id="release">Release</h3>
-<ul>
-<li>Bump the version in package.json (once the module hits 1.0 this will become automatic)<pre class="line-numbers"><code class="language-bash">yarn run release</code></pre></li>
-</ul>
-<h2 id="license">License</h2>
-<p>MIT</p>
 
 
 

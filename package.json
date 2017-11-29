@@ -7,15 +7,15 @@
   "typings": "./index.d.ts",
   "scripts": {
     "start": "concurrently --raw \"webpack-dev-server --open\" \"npm run test:watch\"",
-    "build:demo": "webpack --env=production",
+    "build:demo": "webpack ",
     "build:umd": "webpack --config webpack.config.umd.ts",
     "build:ngc": "ngc -p tsconfig-ngc.json",
     "build:dist": "npm run build:umd && npm run build:ngc",
     "build:clean": "del-cli dist",
-    "test": "karma start --single-run && npm run build:dis t && npm run build:clean",
+    "test": "karma start --single-run && npm run build:dist && npm run build:clean",
     "test:watch": "karma start --auto-watch",
     "commit": "git-cz",
-    "compodoc": "compodoc -p tsconfig-compodoc.json -d docs --disableGraph --disableCoverage --disablePrivateOrInternalSupport",
+    "compodoc": "compodoc -p tsconfig-compodoc.json -d docs --disableGraph --disableCoverage --disablePrivate --disableInternal --disableLifeCycleHooks --disableProtected",
     "gh-pages": "git checkout gh-pages && git merge master --no-edit --no-ff && del-cli *.js *.js.map && npm run build:demo && npm run compodoc && git add . && git commit -m \"chore: build demo and docs\" && git push && git checkout master",
     "copyfiles": "copyfiles package.json LICENSE README.md CHANGELOG.md dist",
     "prerelease": "npm test",
@@ -76,7 +76,7 @@
     "@commitlint/cli": "^4.1.0",
     "@commitlint/config-angular": "^3.1.1",
     "@commitlint/prompt": "^4.1.0",
-    "@compodoc/compodoc": "^1.0.0-beta.3",
+    "@compodoc/compodoc": "^1.0.4",
     "@mattlewis92/webpack-karma-die-hard": "^1.0.4",
     "@ngtools/webpack": "^1.8.2",
     "@types/chai": "^4.0.0",
@@ -86,6 +86,7 @@
     "@types/sinon": "^2.1.2",
     "@types/sinon-chai": "^2.7.26",
     "@types/webpack": "^3.0.4",
+    "@types/lodash": "^4.14.80",
     "angularfire2": "^5.0.0-rc.4",
     "chai": "^4.0.0",
     "codecov": "^2.1.0",
@@ -135,8 +136,5 @@
     "@angular/core": ">=4.0.0 <6.0.0",
     "angularfire2": "^5.0.0-rc.4",
     "firebase": "^4.6.2"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.14.80"
   }
 }

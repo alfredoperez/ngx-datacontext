@@ -1,5 +1,5 @@
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
 import * as webpack from 'webpack';
 import * as angularExternals from 'webpack-angular-externals';
 import * as rxjsExternals from 'webpack-rxjs-externals';
@@ -9,7 +9,7 @@ const pkg = JSON.parse(fs.readFileSync('./package.json').toString());
 export default {
   entry: {
     'ngx-datacontext.umd': path.join(__dirname, 'src', 'index.ts'),
-    'ngx-datacontext.umd.min': path.join(__dirname, 'src', 'index.ts'),
+    'ngx-datacontext.umd.min': path.join(__dirname, 'src', 'index.ts')
   },
   output: {
     path: path.join(__dirname, 'dist', 'bundles'),

@@ -29,20 +29,10 @@ export default (environment = 'development') => {
         options: {
           transpileOnly: true
         }
-      },
-        ifDevelopment({
-          test: /\.scss$/,
-          use: [{
-            loader: 'style-loader' // creates style nodes from JS strings
-          }, {
-            loader: 'css-loader' // translates CSS into CommonJS
-          }, {
-            loader: 'sass-loader' // compiles Sass to CSS
-          }]
-        }), {
-          test: /\.ts$/,
-          loader: '@ngtools/webpack'
-        })])
+      }, {
+        test: /\.ts$/,
+        loader: '@ngtools/webpack'
+      })])
     },
     resolve: {
       extensions: ['.ts', '.js']
