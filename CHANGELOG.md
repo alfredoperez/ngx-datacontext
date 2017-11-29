@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.4"></a>
+## [0.8.4](https://github.com/alfredoperez/ngx-datacontext/compare/v0.8.3...v0.8.4) (2017-11-29)
+
+
+### Bug Fixes
+
+* **contract:** fix tslint error for a contract ([f946e1a](https://github.com/alfredoperez/ngx-datacontext/commit/f946e1a))
+
+
+
 <a name="0.8.3"></a>
 ## [0.8.3](https://github.com/alfredoperez/ngx-datacontext/compare/v0.8.1...v0.8.3) (2017-11-29)
 
