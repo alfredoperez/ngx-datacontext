@@ -21,7 +21,8 @@ export class BaseEntity {
 
     return result;
   }
-  deserializeTwo(target: any): BaseEntity {
+
+  deserialize(target: any): BaseEntity {
     if (this.attributes === undefined) return this;
 
     this.attributes.forEach((attr: EntityAttribute) => {
@@ -41,30 +42,8 @@ export class BaseEntity {
 
     return this;
   }
-  deserialize(input: any): BaseEntity {
-    for (const property in input) {
-      if (!input.hasOwnProperty(property)) continue;
 
-      if (
-        typeof (this as any)[property] === 'object' &&
-        input[property] !== undefined
-      ) {
-        const result = this.deserializeEntity(
-          (this as any)[property],
-          input[property]
-        );
-        (this as any)[property] = Array.isArray(result)
-          ? result.splice(0)
-          : { ...result };
-      } else
-        (this as any)[property] = this.isDate(input[property])
-          ? new Date(input[property])
-          : input[property];
-    }
-
-    return this;
-  }
-  isNew(): boolean {
+  get isNew(): boolean {
     return this.id === undefined;
   }
 

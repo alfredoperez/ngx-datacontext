@@ -17,6 +17,9 @@ export function Attribute(
     if (target.attributes === undefined)
       target.attributes = new Array<EntityAttribute>();
 
+    if (options.serializedName === undefined)
+      options.serializedName = attributeKey;
+
     target.attributes.push({
       name: attributeKey,
       options

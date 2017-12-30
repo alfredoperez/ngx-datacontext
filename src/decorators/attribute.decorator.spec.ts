@@ -2,7 +2,6 @@ import { BaseEntity } from '../models/';
 import { Attribute } from './attribute.decorator';
 import { Entity } from './entity.decorator';
 
-/* tslint:disable */
 @Entity('user')
 class User extends BaseEntity {
     @Attribute({ serializedName: 'firstName' })
@@ -14,16 +13,18 @@ class User extends BaseEntity {
 }
 
 describe('Entity Decorator', () => {
-    it('should return list of serializable attributes', () => {
+
+    it('should add attribute decorated to entity', () => {
         const mock = new User();
 
-        expect((mock as any).attributes.length).toBeGreaterThan(0);
-        expect((mock as any).attributes[0].name).toBe('name');
+        expect((mock as any).attributes[0].options.serializedName)
+            .toBe('firstName');
     });
 
-    it('should return attribute without key', () => {
+    it('should add attribute without serialized name', () => {
         const mock = new User();
-        expect((mock as any).attributes.length).toBeGreaterThan(0);
-        expect((mock as any).attributes[0].name).toBe('name');
+
+        expect((mock as any).attributes[1].options.serializedName)
+            .toBe('lastName');
     });
 });
