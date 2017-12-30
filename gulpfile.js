@@ -523,7 +523,7 @@ gulp.task('serve:demo-hmr', () => {
 });
 
 gulp.task('build:demo', () => {
-  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer`, {
+  return execDemoCmd(`build --preserve-symlinks --prod  --build-optimizer`, {
     cwd: `${config.demoDir}`
   });
 });
