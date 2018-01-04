@@ -1,3 +1,13 @@
+<a name="0.9.6"></a>
+## [0.9.6](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.5...v0.9.6) (2018-01-04)
+
+
+### Bug Fixes
+
+* **dependencies:** add peer dependencies ([fe78892](https://github.com/alfredoperez/ngx-datacontext/commit/fe78892))
+
+
+
 <a name="0.9.5"></a>
 ## [0.9.5](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.4...v0.9.5) (2018-01-04)
 
