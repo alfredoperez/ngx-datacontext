@@ -8,7 +8,7 @@ import { HomeComponent } from './home.component';
 @NgModule({
     imports: [
         CommonModule,
-        NgxDataContextModule.forRoot(),
+        //   NgxDataContextModule.forRoot(),
         HomeRoutingModule,
     ],
     declarations: [HomeComponent],
