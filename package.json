@@ -31,12 +31,16 @@
   "dependencies": {
     "@angular/common": "5.0.0",
     "@angular/core": "5.0.0",
-    "@angular/http": "5.0.0",
-    "angularfire2": "^5.0.0-rc.4",
+    "@angular/http": "5.0.0"
+
+  },
+  "peerDependencies": {
     "firebase": "4.6.2",
+    "angularfire2": "^5.0.0-rc.4",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
+
     "@angular/compiler": "5.0.0",
     "@angular/compiler-cli": "5.0.0",
     "@angular/forms": "^5.1.2",
