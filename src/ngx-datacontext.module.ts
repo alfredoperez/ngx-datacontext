@@ -5,6 +5,22 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import * as fromServices from './services/';
 
+export {
+  BaseEntity,
+  DataSource,
+  DataSourceType,
+  FirebaseEntity
+} from './models/';
+
+export { Entity, Attribute, EntityProperty } from './decorators/';
+
+export {
+  FirebaseRepository,
+  FirestoreRepository,
+  DataContext,
+  DataServiceFactory
+} from './services/';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule, AngularFireDatabaseModule, HttpClientModule],
