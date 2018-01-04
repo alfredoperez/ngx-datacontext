@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-
+import { Injectable } from '@angular/core';
 import {
   AngularFirestore, AngularFirestoreCollection,
   AngularFirestoreDocument
@@ -10,10 +10,13 @@ import { FirebaseEntity } from '../models/firebase-entity.model';
 import { Repository } from '../models/repository.model';
 import * as _ from 'lodash';
 
+@Injectable()
 export class FirestoreRepository<T extends FirebaseEntity>
   implements Repository<FirebaseEntity> {
 
-  constructor(public entity: FirebaseEntity, private readonly afs: AngularFirestore) { }
+  constructor(
+    public entity: FirebaseEntity,
+    private afs: AngularFirestore) { }
 
   // TODO: include firestore configuration to opt-in for snapshotChanges().
   // Defaulting to valueChanges() instead.
