@@ -466,7 +466,7 @@ gulp.task('build:doc', (cb) => {
       tsconfig: 'src/tsconfig.lib.json',
       hideGenerator: true,
       disableCoverage: true,
-      theme: 'readthedocs',
+      theme: 'laravel',
       output: `${config.outputDemoDir}/doc/`
     })
   ], cb);
