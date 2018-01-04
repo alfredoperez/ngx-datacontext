@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgxDataContextModule } from 'ngx-datacontext';
 
 import { HomeRoutingModule } from './home-routing.module';
@@ -23,7 +24,8 @@ const COMPONENTS = [
 @NgModule({
     imports: [
         CommonModule,
-        //   NgxDataContextModule.forRoot(),
+        ReactiveFormsModule,
+        NgxDataContextModule.forRoot(),
         HomeRoutingModule,
 
         MatListModule,
