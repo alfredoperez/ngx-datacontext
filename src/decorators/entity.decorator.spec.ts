@@ -1,4 +1,4 @@
-import { BaseEntity } from '../models';
+import { BaseEntity } from '../models/entity.model';
 import { Entity } from './entity.decorator';
 
 /* tslint:disable */
