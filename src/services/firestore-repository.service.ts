@@ -21,7 +21,7 @@ export class FirestoreRepository<T extends FirebaseEntity>
   // TODO: include firestore configuration to opt-in for snapshotChanges().
   // Defaulting to valueChanges() instead.
   getById(id: string): Observable<FirebaseEntity> {
-    return this.afs.doc<T>(`${this.entity.name}/${id}`)
+    return this.getDocRef(id)
       .valueChanges()
       .map(this.handleEntityResponse);
   }
