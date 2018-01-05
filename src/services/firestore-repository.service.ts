@@ -26,20 +26,21 @@ export class FirestoreRepository<T extends FirebaseEntity>
       .map(this.handleEntityResponse);
   }
 
-  getAll(): Observable<Array<FirebaseEntity>> {
-    return this.afs.collection<T>(this.entity.name)
+  getAll(parentEntity?: FirebaseEntity): Observable<Array<FirebaseEntity>> {
+    return this.getCollectionRef(parentEntity)
       .valueChanges()
       .map(this.handleCollectionResponse);
   }
 
   find(): Observable<Array<FirebaseEntity>> {
+    // TODO: implement
     throw new Error('Method not implemented.');
   }
 
-  create(entity: FirebaseEntity): Observable<FirebaseEntity> {
+  create(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Observable<FirebaseEntity> {
     const subject = new Subject<T>();
-    this.afs.collection<FirebaseEntity>(this.entity.name)
-      .add(entity).then(
+
+    this.getCollectionRef(parentEntity).add(entity).then(
       (val: any) => {
         subject.next(val);
         subject.complete();
@@ -51,17 +52,39 @@ export class FirestoreRepository<T extends FirebaseEntity>
 
     return subject.asObservable();
   }
-  remove(entity: FirebaseEntity): Promise<void> {
-    return this.afs.collection<FirebaseEntity>(this.entity.name)
-      .doc(entity.id).delete();
+  remove(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Promise<void> {
+    return this.getDocRef(entity.id, parentEntity).delete();
   }
 
-  update(entity: FirebaseEntity): Promise<void> {
-    return this.afs.collection<FirebaseEntity>(this.entity.name)
-      .doc(entity.id).set(entity, { merge: true });
+  update(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Promise<void> {
+    return this.getDocRef(entity.id, parentEntity).set(entity, { merge: true });
   }
 
-  // TODO: add methods for nested collections
+  // TODO: Add functionality to have multi-level nesting (e.g. through array of collections)
+  private getCollectionRef(parentEntity?: FirebaseEntity): AngularFirestoreCollection<FirebaseEntity> {
+    return parentEntity === undefined ?
+      this.afs.collection<FirebaseEntity>(this.entity.name) :
+      this.getNestedCollectionRef(parentEntity);
+  }
+
+  private getNestedCollectionRef(parentEntity: FirebaseEntity): AngularFirestoreCollection<FirebaseEntity> {
+    return this.afs.collection<FirebaseEntity>(parentEntity.name)
+      .doc(parentEntity.id)
+      .collection(this.entity.name);
+  }
+
+  private getDocRef(id: string, parentEntity?: FirebaseEntity): AngularFirestoreDocument<FirebaseEntity> {
+    return parentEntity === undefined ?
+      this.afs.collection<FirebaseEntity>(this.entity.name).doc(id) :
+      this.getNestedDocRef(id, parentEntity);
+  }
+
+  private getNestedDocRef(id: string, parentEntity: FirebaseEntity): AngularFirestoreDocument<FirebaseEntity> {
+    return this.afs.collection<FirebaseEntity>(parentEntity.name)
+      .doc(parentEntity.id)
+      .collection(this.entity.name)
+      .doc(id);
+  }
 
   // TODO: review onresponse methods,
   // they are also in the firebase-repository.service.ts file
