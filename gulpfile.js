@@ -3,7 +3,7 @@ const del = require('del');
 const gulp = require('gulp');
 const gulpUtil = require('gulp-util');
 const helpers = require('./config/helpers');
-
+var replace = require('gulp-replace');
 /** TSLint checker */
 const tslint = require('tslint');
 const gulpTslint = require('gulp-tslint');
@@ -285,17 +285,17 @@ gulp.task('compile', (cb) => {
 
 // Build the 'dist' folder (without publishing it to NPM)
 gulp.task('build', ['clean'], (cb) => {
-  runSequence('compile', 'test', 'npm-package', 'rollup-bundle', cb);
+  runSequence('compile', 'test', 'npm-package', 'rollup-bundle', 'remove-firebase-esm5', 'remove-firebase-esm2015', cb);
 });
 
 // Same as 'build' but without cleaning temp folders (to avoid breaking demo app, if currently being served)
 gulp.task('build-watch', (cb) => {
-  runSequence('compile', 'test', 'npm-package', 'rollup-bundle', cb);
+  runSequence('compile', 'test', 'npm-package', 'rollup-bundle', 'remove-firebase-esm5', 'remove-firebase-esm2015', cb);
 });
 
 // Same as 'build-watch' but without running tests
 gulp.task('build-watch-no-tests', (cb) => {
-  runSequence('compile', 'npm-package', 'rollup-bundle', cb);
+  runSequence('compile', 'npm-package', 'rollup-bundle', 'remove-firebase-esm5', 'remove-firebase-esm2015', cb);
 });
 
 // Watch changes on (*.ts, *.html, *.sass) and Re-build library
@@ -388,7 +388,7 @@ gulp.task('rollup-bundle', (cb) => {
         // ATTENTION:
         // Add any other dependency or peer dependency of your library here
         // This is required for UMD bundle users.
-        'angularfire2': 'angularfire2',
+        //  'angularfire2': 'angularfire2',
         'lodash': 'lodash',
         //     'firebase': 'firebase'
       };
@@ -453,6 +453,22 @@ gulp.task('rollup-bundle', (cb) => {
       gulpUtil.log(gulpUtil.colors.red(e));
       process.exit(1);
     });
+});
+
+gulp.task('remove-firebase-esm5', function () {
+  var path = config.outputDir + 'esm5/ngx-datacontext.es5.js';
+  gulp.src(path)
+    .pipe(replace(
+      /module\.exports = require\(/, '// REMOVED'))
+    .pipe(gulp.dest(config.outputDir + 'esm5/'));
+});
+
+gulp.task('remove-firebase-esm2015', function () {
+  var path = config.outputDir + 'esm2015/ngx-datacontext.js';
+  gulp.src(path)
+    .pipe(replace(
+      /module\.exports = require\(/, '// REMOVED'))
+    .pipe(gulp.dest(config.outputDir + 'esm2015/'));
 });
 
 
