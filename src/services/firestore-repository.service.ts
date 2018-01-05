@@ -26,8 +26,8 @@ export class FirestoreRepository<T extends FirebaseEntity>
       .map(this.handleEntityResponse);
   }
 
-  getAll(parentEntity?: FirebaseEntity): Observable<Array<FirebaseEntity>> {
-    return this.getCollectionRef(parentEntity)
+  getAll(...parentEntities: Array<FirebaseEntity>): Observable<Array<FirebaseEntity>> {
+    return this.getCollectionRef(...parentEntities)
       .valueChanges()
       .map(this.handleCollectionResponse);
   }
@@ -37,10 +37,10 @@ export class FirestoreRepository<T extends FirebaseEntity>
     throw new Error('Method not implemented.');
   }
 
-  create(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Observable<FirebaseEntity> {
+  create(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Observable<FirebaseEntity> {
     const subject = new Subject<T>();
 
-    this.getCollectionRef(parentEntity).add(entity).then(
+    this.getCollectionRef(...parentEntities).add(entity).then(
       (val: any) => {
         subject.next(val);
         subject.complete();
@@ -52,38 +52,46 @@ export class FirestoreRepository<T extends FirebaseEntity>
 
     return subject.asObservable();
   }
-  remove(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Promise<void> {
-    return this.getDocRef(entity.id, parentEntity).delete();
+  remove(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Promise<void> {
+    return this.getDocRef(entity.id, ...parentEntities).delete();
   }
 
-  update(entity: FirebaseEntity, parentEntity?: FirebaseEntity): Promise<void> {
-    return this.getDocRef(entity.id, parentEntity).set(entity, { merge: true });
+  update(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Promise<void> {
+    return this.getDocRef(entity.id, ...parentEntities).set(entity, { merge: true });
   }
 
-  // TODO: Add functionality to have multi-level nesting (e.g. through array of collections)
-  private getCollectionRef(parentEntity?: FirebaseEntity): AngularFirestoreCollection<FirebaseEntity> {
-    return parentEntity === undefined ?
+  private getCollectionRef(...parentEntities: Array<FirebaseEntity>): AngularFirestoreCollection<FirebaseEntity> {
+    return parentEntities === undefined || parentEntities.length === 0 ?
       this.afs.collection<FirebaseEntity>(this.entity.name) :
-      this.getNestedCollectionRef(parentEntity);
+      this.getNestedCollectionRef(parentEntities);
   }
 
-  private getNestedCollectionRef(parentEntity: FirebaseEntity): AngularFirestoreCollection<FirebaseEntity> {
-    return this.afs.collection<FirebaseEntity>(parentEntity.name)
-      .doc(parentEntity.id)
-      .collection(this.entity.name);
+  private getNestedCollectionRef(parentEntities: Array<FirebaseEntity>): AngularFirestoreCollection<FirebaseEntity> {
+    return this.getNestedRef(parentEntities).collection(this.entity.name);
   }
 
-  private getDocRef(id: string, parentEntity?: FirebaseEntity): AngularFirestoreDocument<FirebaseEntity> {
-    return parentEntity === undefined ?
+  private getDocRef(id: string, ...parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    return parentEntities === undefined || parentEntities.length === 0 ?
       this.afs.collection<FirebaseEntity>(this.entity.name).doc(id) :
-      this.getNestedDocRef(id, parentEntity);
+      this.getNestedDocRef(id, parentEntities);
   }
 
-  private getNestedDocRef(id: string, parentEntity: FirebaseEntity): AngularFirestoreDocument<FirebaseEntity> {
-    return this.afs.collection<FirebaseEntity>(parentEntity.name)
-      .doc(parentEntity.id)
-      .collection(this.entity.name)
-      .doc(id);
+  private getNestedDocRef(id: string, parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    return this.getNestedRef(parentEntities).collection(this.entity.name).doc(id);
+  }
+
+  private getNestedRef(parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    // TODO: review/error handle, assuming entities are in the array sequentially in relation to the firebase path
+    const baseParent = parentEntities[0];
+    let collectionRef = this.afs.collection<FirebaseEntity>(baseParent.name).doc<FirebaseEntity>(baseParent.id);
+
+    for (let i = 1; i < parentEntities.length; i++) {
+      const nextEntity = parentEntities[i];
+      if (!nextEntity.name || !nextEntity.id) break;
+      collectionRef = collectionRef.collection<FirebaseEntity>(nextEntity.name).doc<FirebaseEntity>(nextEntity.id);
+    }
+
+    return collectionRef;
   }
 
   // TODO: review onresponse methods,
