@@ -9,7 +9,7 @@
         <p mat-line> Favorite Color - {{user.color}}</p>
       </div>
       <div>
-        <button mat-raised-button color="warn" (click)="removeUser(user)">Delete</button>
+        <button *ngIf="users.length>1" mat-raised-button color="warn" (click)="removeUser(user)">Delete</button>
         <button mat-raised-button color="primary" (click)="editUser(user)">Edit</button>
       </div>
     </div>

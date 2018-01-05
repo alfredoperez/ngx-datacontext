@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FirebaseDemoComponent } from './containers/firebase-demo/firebase-demo.component';
 import { UserFormComponent } from './containers/user-form/user-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const COMPONENTS = [
     HomeComponent,
@@ -27,6 +28,7 @@ const COMPONENTS = [
         ReactiveFormsModule,
         NgxDataContextModule.forRoot(),
         HomeRoutingModule,
+        BrowserAnimationsModule,
 
         MatListModule,
         MatButtonModule,
@@ -35,7 +37,7 @@ const COMPONENTS = [
         MatInputModule,
         MatProgressBarModule,
     ],
-    declarations: [...COMPONENTS]
-
+    declarations: [...COMPONENTS],
+    entryComponents: [...COMPONENTS]
 })
 export class HomeModule { }

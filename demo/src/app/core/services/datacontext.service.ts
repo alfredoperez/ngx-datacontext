@@ -22,5 +22,6 @@ export class DataContextService extends fromDataContext.DataContext {
 
     constructor(private factory: fromDataContext.DataServiceFactory) {
         super(factory);
+        this.initialize();
     }
 }

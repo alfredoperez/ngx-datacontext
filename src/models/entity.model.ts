@@ -23,7 +23,10 @@ export class BaseEntity {
   }
 
   deserialize(target: any): BaseEntity {
+
     if (this.attributes === undefined) return this;
+
+    this.id = target.id;
 
     this.attributes.forEach((attr: EntityAttribute) => {
       if (
