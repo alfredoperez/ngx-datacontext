@@ -1,3 +1,13 @@
+<a name="0.9.12"></a>
+## [0.9.12](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.11...v0.9.12) (2018-01-05)
+
+
+### Bug Fixes
+
+* **demo:** fix demo dependencies ([048d1d0](https://github.com/alfredoperez/ngx-datacontext/commit/048d1d0))
+
+
+
 <a name="0.9.11"></a>
 ## [0.9.11](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.10...v0.9.11) (2018-01-05)
 
