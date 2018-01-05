@@ -1,3 +1,8 @@
+<a name="0.9.10"></a>
+## [0.9.10](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.9...v0.9.10) (2018-01-05)
+
+
+
 <a name="0.9.9"></a>
 ## [0.9.9](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.8...v0.9.9) (2018-01-04)
 
