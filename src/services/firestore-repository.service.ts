@@ -21,25 +21,26 @@ export class FirestoreRepository<T extends FirebaseEntity>
   // TODO: include firestore configuration to opt-in for snapshotChanges().
   // Defaulting to valueChanges() instead.
   getById(id: string): Observable<FirebaseEntity> {
-    return this.afs.doc<T>(`${this.entity.name}/${id}`)
+    return this.getDocRef(id)
       .valueChanges()
       .map(this.handleEntityResponse);
   }
 
-  getAll(): Observable<Array<FirebaseEntity>> {
-    return this.afs.collection<T>(this.entity.name)
+  getAll(...parentEntities: Array<FirebaseEntity>): Observable<Array<FirebaseEntity>> {
+    return this.getCollectionRef(...parentEntities)
       .valueChanges()
       .map(this.handleCollectionResponse);
   }
 
   find(): Observable<Array<FirebaseEntity>> {
+    // TODO: implement
     throw new Error('Method not implemented.');
   }
 
-  create(entity: FirebaseEntity): Observable<FirebaseEntity> {
+  create(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Observable<FirebaseEntity> {
     const subject = new Subject<T>();
-    this.afs.collection<FirebaseEntity>(this.entity.name)
-      .add(entity).then(
+
+    this.getCollectionRef(...parentEntities).add(entity).then(
       (val: any) => {
         subject.next(val);
         subject.complete();
@@ -51,17 +52,47 @@ export class FirestoreRepository<T extends FirebaseEntity>
 
     return subject.asObservable();
   }
-  remove(entity: FirebaseEntity): Promise<void> {
-    return this.afs.collection<FirebaseEntity>(this.entity.name)
-      .doc(entity.id).delete();
+  remove(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Promise<void> {
+    return this.getDocRef(entity.id, ...parentEntities).delete();
   }
 
-  update(entity: FirebaseEntity): Promise<void> {
-    return this.afs.collection<FirebaseEntity>(this.entity.name)
-      .doc(entity.id).set(entity, { merge: true });
+  update(entity: FirebaseEntity, ...parentEntities: Array<FirebaseEntity>): Promise<void> {
+    return this.getDocRef(entity.id, ...parentEntities).set(entity, { merge: true });
   }
 
-  // TODO: add methods for nested collections
+  private getCollectionRef(...parentEntities: Array<FirebaseEntity>): AngularFirestoreCollection<FirebaseEntity> {
+    return parentEntities === undefined || parentEntities.length === 0 ?
+      this.afs.collection<FirebaseEntity>(this.entity.name) :
+      this.getNestedCollectionRef(parentEntities);
+  }
+
+  private getNestedCollectionRef(parentEntities: Array<FirebaseEntity>): AngularFirestoreCollection<FirebaseEntity> {
+    return this.getNestedRef(parentEntities).collection(this.entity.name);
+  }
+
+  private getDocRef(id: string, ...parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    return parentEntities === undefined || parentEntities.length === 0 ?
+      this.afs.collection<FirebaseEntity>(this.entity.name).doc(id) :
+      this.getNestedDocRef(id, parentEntities);
+  }
+
+  private getNestedDocRef(id: string, parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    return this.getNestedRef(parentEntities).collection(this.entity.name).doc(id);
+  }
+
+  private getNestedRef(parentEntities: Array<FirebaseEntity>): AngularFirestoreDocument<FirebaseEntity> {
+    // TODO: review/error handle, assuming entities are in the array sequentially in relation to the firebase path
+    const baseParent = parentEntities[0];
+    let collectionRef = this.afs.collection<FirebaseEntity>(baseParent.name).doc<FirebaseEntity>(baseParent.id);
+
+    for (let i = 1; i < parentEntities.length; i++) {
+      const nextEntity = parentEntities[i];
+      if (!nextEntity.name || !nextEntity.id) break;
+      collectionRef = collectionRef.collection<FirebaseEntity>(nextEntity.name).doc<FirebaseEntity>(nextEntity.id);
+    }
+
+    return collectionRef;
+  }
 
   // TODO: review onresponse methods,
   // they are also in the firebase-repository.service.ts file
