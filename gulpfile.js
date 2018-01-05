@@ -390,7 +390,7 @@ gulp.task('rollup-bundle', (cb) => {
         // This is required for UMD bundle users.
         'angularfire2': 'angularfire2',
         'lodash': 'lodash',
-        'firebase': 'firebase'
+        //     'firebase': 'firebase'
       };
       const rollupBaseConfig = {
         name: _.camelCase(config.libraryName),
@@ -466,6 +466,7 @@ gulp.task('build:doc', (cb) => {
       tsconfig: 'src/tsconfig.lib.json',
       hideGenerator: true,
       disableCoverage: true,
+      theme: 'laravel',
       output: `${config.outputDemoDir}/doc/`
     })
   ], cb);

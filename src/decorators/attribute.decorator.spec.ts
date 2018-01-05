@@ -1,4 +1,4 @@
-import { BaseEntity } from '../models/';
+import { BaseEntity } from '../models/entity.model';
 import { Attribute } from './attribute.decorator';
 import { Entity } from './entity.decorator';
 

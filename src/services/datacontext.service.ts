@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import * as fromModels from '../models';
 import { DataServiceFactory } from './repository-factory.service';
+import { BaseEntity } from '../models/entity.model';
+import { CustomServiceConfig, DataSource } from '../models/datasource.model';
 
 @Injectable()
 export class DataContext {
-  datasources: Array<fromModels.DataSource>;
+  datasources: Array<DataSource>;
 
   constructor(private serviceFactory: DataServiceFactory) { }
 
@@ -17,11 +18,11 @@ export class DataContext {
           Array.isArray(datasource.entities)
         )
           for (const item of datasource.entities) {
-            let entity: fromModels.BaseEntity;
+            let entity: BaseEntity;
             let target: string;
 
-            if (item instanceof fromModels.BaseEntity) {
-              entity = item as fromModels.BaseEntity;
+            if (item instanceof BaseEntity) {
+              entity = item as BaseEntity;
               target = (entity as any)['$$name'];
             } else {
               entity = item.entity;
@@ -40,7 +41,7 @@ export class DataContext {
           Array.isArray(datasource.services)
         )
           datasource.services.forEach(
-            (config: fromModels.CustomServiceConfig) => {
+            (config: CustomServiceConfig) => {
               (this as any)[config.name] = this.serviceFactory.createCustom(
                 datasource
               );

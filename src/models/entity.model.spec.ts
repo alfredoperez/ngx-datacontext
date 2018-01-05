@@ -1,5 +1,7 @@
-import { Attribute, Entity } from '../decorators';
+
 import { BaseEntity } from './entity.model';
+import { Entity } from '../decorators/entity.decorator';
+import { Attribute } from '../decorators/attribute.decorator';
 
 const FIRST_NAME = 'John';
 const LAST_NAME = 'Smith';

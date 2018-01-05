@@ -2,7 +2,7 @@
   <img height="256px" width="256px" style="text-align: center;" src="https://cdn.rawgit.com/alfredoperez/ngx-datacontext/master/demo/src/assets/logo.svg">
 </p>
 
-# ngx-datacontext - Angular library built with ❤ using ngx-library yeoman generator.
+# ngx-datacontext - Data context service for Angular applications to easily create data services and link them to entities.
 
 [![npm version](https://badge.fury.io/js/ngx-datacontext.svg)](https://badge.fury.io/js/ngx-datacontext),
 [![Build Status](https://travis-ci.org/alfredoperez/ngx-datacontext.svg?branch=master)](https://travis-ci.org/alfredoperez/ngx-datacontext)
