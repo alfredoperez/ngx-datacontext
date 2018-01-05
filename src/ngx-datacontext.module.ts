@@ -6,6 +6,7 @@ import { FirebaseRepository } from './services/firebase-repository.service';
 import { FirestoreRepository } from './services/firestore-repository.service';
 import { DataContext } from './services/datacontext.service';
 import { DataServiceFactory } from './services/repository-factory.service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Entities
 export { BaseEntity } from './models/entity.model';
@@ -30,7 +31,11 @@ const SERVICES = [
 ];
 @NgModule({
   declarations: [],
-  imports: [CommonModule, AngularFireDatabaseModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    HttpClientModule],
   exports: []
 })
 export class NgxDataContextModule {
