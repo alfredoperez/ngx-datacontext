@@ -1,7 +1,7 @@
 {
   "name": "ngx-datacontext",
   "description": "Angular library built with ❤ using ngx-library yeoman generator.",
-  "version": "0.9.12",
+  "version": "0.9.13",
   "homepage": "https://github.com/alfredoperez/ngx-datacontext",
   "author": {
     "name": "Alfredo Perez",
