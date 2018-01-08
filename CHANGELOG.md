@@ -1,3 +1,18 @@
+<a name="0.9.14"></a>
+## [0.9.14](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.13...v0.9.14) (2018-01-08)
+
+
+### Bug Fixes
+
+* **docs:** fix highlight input  ([4bd9bb2](https://github.com/alfredoperez/ngx-datacontext/commit/4bd9bb2))
+
+
+### Features
+
+* **datacontext:** add firestore to datacontext base service ([5cd518c](https://github.com/alfredoperez/ngx-datacontext/commit/5cd518c))
+
+
+
 <a name="0.9.13"></a>
 ## [0.9.13](https://github.com/alfredoperez/ngx-datacontext/compare/v0.9.12...v0.9.13) (2018-01-05)
 
