@@ -31,7 +31,9 @@
   "dependencies": {
     "@angular/common": "5.0.0",
     "@angular/core": "5.0.0",
-    "@angular/http": "5.0.0"
+    "@angular/http": "5.0.0",
+    "highlightjs": "^9.10.0",
+    "ngx-highlightjs": "^1.4.0"
   },
   "peerDependencies": {
     "angularfire2": "^5.0.0-rc.4",

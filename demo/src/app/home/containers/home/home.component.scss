@@ -1,12 +1,27 @@
 .logo {
-  width: 256px;
-  height: 256px;
-  margin-top: 1.4rem;
+    width: 256px;
+    height: 256px;
+    margin-top: 1.4rem;
 }
 
 .home {
-  margin-top: 1.0rem;
-  .container {
-    height: 100%;
-  }
+    margin-top: 1.0rem;
+    .container {
+        height: 100%;
+    }
+}
+
+.tab-content {
+    margin-top: 30px;
+}
+
+.tab-pane.active {
+    margin-top: 30px;
+}
+.heart {
+    color: #ff005d;
+}
+.disclaimer p {
+    font-size: 0.8em;
+    margin-bottom: 0px;
 }

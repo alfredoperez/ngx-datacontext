@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './shared/footer/footer.component';
 
 import { RouterOutletStubComponent, RouterLinkStubDirective } from '../testing/router-stubs';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +21,6 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         HeaderStubComponent,
-        FooterComponent,
         RouterOutletStubComponent
       ],
       providers: [
@@ -32,8 +30,8 @@ describe('AppComponent', () => {
   }));
 
   it('should create', async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 

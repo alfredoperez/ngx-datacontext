@@ -1,25 +1,29 @@
-<button mat-raised-button color="primary" (click)="addUser()">Add new user</button>
-<h3 mat-subheader>Users</h3>
-<mat-list class="user-list">
-  <mat-list-item *ngIf="users$ | async as users; else loading">
-    <div *ngFor="let user of users" fxLayout="row">
-      <div>
-        <h4 mat-line>Name - {{ user.name }}</h4>
-        <p mat-line> Created On - {{ user.creation | date }}</p>
-        <p mat-line> Favorite Color - {{user.color}}</p>
+<div class="firebase-container">
+  <p>
+    Try the datacontext by adding, deleting,or updating a user</p>
+  <button class="btn"
+          (click)="addUser()">Add new user</button>
+  <ng-template #loading>
+    <ngb-progressbar type="success"></ngb-progressbar>
+  </ng-template>
+  <div class="user-list"
+       *ngIf="users$ | async as users; else loading">
+    <div *ngFor="let user of users"
+         fxLayout="row"
+         class="card user">
+      <div class="card-header ">
+        <p>Name - {{ user.firstName }} {{ user.lastName}}</p>
+        <button *ngIf="users.length>1"
+                class="btn"
+                (click)="removeUser(user)">Delete
+      </button>
+        <button class="btn btn-secondary"
+                (click)="editUser(user)">Edit</button>
       </div>
-      <div>
-        <button *ngIf="users.length>1" mat-raised-button color="warn" (click)="removeUser(user)">Delete</button>
-        <button mat-raised-button color="primary" (click)="editUser(user)">Edit</button>
-      </div>
+
     </div>
     <div *ngIf="users.length===0">
       <p> No users found. Start by adding a user.</p>
     </div>
-  </mat-list-item>
-
-  <ng-template #loading>
-    <mat-progress-bar [color]="primary" [mode]="indeterminate">
-    </mat-progress-bar>
-  </ng-template>
-</mat-list>
+  </div>
+</div>

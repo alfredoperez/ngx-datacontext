@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { UserFormComponent } from './user-form.component';
+import { FirestoreDemoComponent } from './firestore-demo.component';
 
-describe('UserFormComponent', () => {
-  let component: UserFormComponent;
-  let fixture: ComponentFixture<UserFormComponent>;
+describe('FirestoreDemoComponent', () => {
+  let component: FirestoreDemoComponent;
+  let fixture: ComponentFixture<FirestoreDemoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserFormComponent ]
+      declarations: [ FirestoreDemoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserFormComponent);
+    fixture = TestBed.createComponent(FirestoreDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

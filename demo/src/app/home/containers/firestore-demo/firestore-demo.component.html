@@ -1,0 +1,55 @@
+<div class="firestore-container">
+  <p>CRUD for Posts entities:</p>
+  <div fxLayout="row"
+       fxLayoutAlign="start start"
+       fxLayoutGap="10px">
+    <button class="btn"
+            (click)="addPost()">Add</button>
+
+  </div>
+  <p>CRUD for Comments related to a Post:</p>
+  <div fxLayout="row"
+       fxLayoutAlign="start start"
+       fxLayoutGap="10px">
+    <button class="btn"
+            (click)="addComment()">Add</button>
+    <button class="btn"
+            (click)="updateComment()">Update</button>
+    <button class="btn"
+            (click)="deleteComment()">Delete</button>
+  </div>
+  <ng-template #loading>
+    ..LOADING..
+  </ng-template>
+
+  <div fxLayout="column"
+       class="posts"
+       *ngIf="posts$ | async as posts; else loading">
+    <h4>Posts</h4>
+    <div class="post card mt-15"
+         *ngFor="let post of posts">
+      <div class="card-header">
+        <h3 class="card-title">{{post.title}}</h3>
+
+        <button class="btn btn-primary btn-sm"
+                (click)="updatePost(post)">Update</button>
+        <button class="btn  btn-danger btn-sm"
+                *ngIf="posts.length>1"
+                (click)="deletePost(post)">Delete</button>
+
+      </div>
+      <div class="post-content">
+        <p>{{post.content}}</p>
+        <p><strong>{{post.createdBy}}</strong> - {{post.createdOn}}</p>
+        <p>
+          {{post.tags}}
+        </p>
+      </div>
+    </div>
+    <div>
+      <div>
+        <p>Comments</p>
+      </div>
+    </div>
+  </div>
+</div>

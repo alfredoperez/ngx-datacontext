@@ -1,59 +1,54 @@
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { Injectable } from '@angular/core';
-import {
-  AngularFirestore, AngularFirestoreCollection,
-  AngularFirestoreDocument
-} from 'angularfire2/firestore';
-
 import { FirebaseEntity } from '../models/firebase-entity.model';
 import { Repository } from '../models/repository.model';
-import * as _ from 'lodash';
 
 @Injectable()
 export class FirestoreRepository<T extends FirebaseEntity>
   implements Repository<FirebaseEntity> {
-
+  collectionName: string;
   constructor(
     public entity: FirebaseEntity,
-    private afs: AngularFirestore) { }
+    private afs: AngularFirestore
+  ) {
+    this.collectionName = entity.entityName;
+  }
 
-  // TODO: include firestore configuration to opt-in for snapshotChanges().
-  // Defaulting to valueChanges() instead.
-  getById(id: string): Observable<FirebaseEntity> {
+  getById(id: string): Observable<T> {
+
     return this.afs.doc<T>(`${this.entity.name}/${id}`)
       .valueChanges()
       .map(this.handleEntityResponse);
   }
 
-  getAll(): Observable<Array<FirebaseEntity>> {
-    return this.afs.collection<T>(this.entity.name)
-      .valueChanges()
-      .map(this.handleCollectionResponse);
+  getAll(): Observable<Array<T>> {
+
+    return this.afs.collection<T>(this.collectionName)
+      .valueChanges();
   }
 
   find(): Observable<Array<FirebaseEntity>> {
     throw new Error('Method not implemented.');
   }
 
-  create(entity: FirebaseEntity): Observable<FirebaseEntity> {
-    const subject = new Subject<T>();
-    this.afs.collection<FirebaseEntity>(this.entity.name)
-      .add(entity).then(
-      (val: any) => {
-        subject.next(val);
-        subject.complete();
-      },
-      (err: any) => {
-        subject.error(err);
-        subject.complete();
-      });
+  create(entity: FirebaseEntity): Observable<T> {
+    if (!entity) return Observable.of<T>();
 
-    return subject.asObservable();
+    const entityToSave = { ...entity.serialize() };
+    entityToSave.id = this.afs.createId();
+    this.afs.collection(this.collectionName)
+      .doc(entityToSave.id)
+      .set(entityToSave);
   }
   remove(entity: FirebaseEntity): Promise<void> {
-    return this.afs.collection<FirebaseEntity>(this.entity.name)
-      .doc(entity.id).delete();
+    if (!entity) return Promise.resolve(undefined);
+
+    return this.afs.collection<FirebaseEntity>(this.collectionName)
+      .doc(entity.id)
+      .delete();
   }
 
   update(entity: FirebaseEntity): Promise<void> {
@@ -61,10 +56,6 @@ export class FirestoreRepository<T extends FirebaseEntity>
       .doc(entity.id).set(entity, { merge: true });
   }
 
-  // TODO: add methods for nested collections
-
-  // TODO: review onresponse methods,
-  // they are also in the firebase-repository.service.ts file
   private handleEntityResponse = (data: any): T => {
     let result: T;
 

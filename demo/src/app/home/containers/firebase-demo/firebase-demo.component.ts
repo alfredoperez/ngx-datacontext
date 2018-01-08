@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import * as faker from 'faker';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../../../core/models/user.model';
 import { DataContextService } from '../../../core/services/datacontext.service';
-import { MatDialog } from '@angular/material';
-import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'app-firebase-demo',
@@ -14,8 +13,7 @@ export class FirebaseDemoComponent implements OnInit {
   users$: Observable<Array<User>>;
 
   constructor(
-    private datacontext: DataContextService,
-    public dialog: MatDialog
+    private datacontext: DataContextService
   ) { }
 
   ngOnInit(): void {
@@ -23,27 +21,18 @@ export class FirebaseDemoComponent implements OnInit {
   }
 
   addUser(): void {
-    const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe((data: any) => {
-      if (data !== '') {
-        this.datacontext.users.create(data);
-      }
-    });
+
+    const user = new User();
+    user.firstName = faker.name.firstName();
+    user.lastName = faker.name.lastName();
+
+    this.datacontext.users.create(user);
   }
 
   editUser(user: any): void {
-    const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '400px',
-      data: { user }
-    });
-
-    dialogRef.afterClosed().subscribe((data: any) => {
-      if (data !== '') {
-        this.datacontext.users.update(data);
-      }
-    });
+    user.firstName = faker.name.firstName();
+    user.lastName = faker.name.lastName();
+    this.datacontext.users.update(user);
   }
 
   removeUser(user: any): void {

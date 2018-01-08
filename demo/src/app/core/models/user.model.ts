@@ -1,8 +1,7 @@
-import { Entity, FirebaseEntity, Attribute } from 'ngx-datacontext';
+import { Entity, FirebaseEntity, Attribute } from '../.../../../../../../src/';
 
 @Entity('users')
 export class User extends FirebaseEntity {
-    @Attribute() name: string;
-    @Attribute() createdOn: string;
-    @Attribute() color: string;
+    @Attribute() firstName: string;
+    @Attribute() lastName: string;
 }
