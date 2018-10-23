@@ -1,0 +1,24 @@
+{
+  "npmScope": "ngx-datacontext",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "documentation": {
+      "tags": []
+    },
+    "documentation-e2e": {
+      "tags": []
+    },
+    "documentation-ui": {
+      "tags": []
+    },
+    "ngx-datacontext": {
+      "tags": []
+    }
+  }
+}

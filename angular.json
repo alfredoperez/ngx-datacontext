@@ -1,0 +1,192 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "documentation": {
+      "root": "apps/documentation/",
+      "sourceRoot": "apps/documentation/src",
+      "projectType": "application",
+      "prefix": "ngx",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/documentation",
+            "index": "apps/documentation/src/index.html",
+            "main": "apps/documentation/src/main.ts",
+            "polyfills": "apps/documentation/src/polyfills.ts",
+            "tsConfig": "apps/documentation/tsconfig.app.json",
+            "assets": [
+              "apps/documentation/src/favicon.ico",
+              "apps/documentation/src/assets"
+            ],
+            "styles": [
+              "apps/documentation/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/documentation/src/environments/environment.ts",
+                  "with": "apps/documentation/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "documentation:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "documentation:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "documentation:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/documentation/tsconfig.app.json",
+              "apps/documentation/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/documentation/jest.config.js",
+            "tsConfig": "apps/documentation/tsconfig.spec.json",
+            "setupFile": "apps/documentation/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "documentation-e2e": {
+      "root": "apps/documentation-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/documentation-e2e/protractor.conf.js",
+            "devServerTarget": "documentation:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "documentation:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/documentation-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "documentation-ui": {
+      "root": "libs/documentation-ui",
+      "sourceRoot": "libs/documentation-ui/src",
+      "projectType": "library",
+      "prefix": "ngx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/documentation-ui/tsconfig.lib.json",
+              "libs/documentation-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/documentation-ui/jest.config.js",
+            "tsConfig": "libs/documentation-ui/tsconfig.spec.json",
+            "setupFile": "libs/documentation-ui/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ngx-datacontext": {
+      "root": "libs/ngx-datacontext",
+      "sourceRoot": "libs/ngx-datacontext/src",
+      "projectType": "library",
+      "prefix": "libs/ngx-datacontext",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/ngx-datacontext/tsconfig.lib.json",
+            "project": "libs/ngx-datacontext/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ngx-datacontext/tsconfig.lib.json",
+              "libs/ngx-datacontext/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/ngx-datacontext/jest.config.js",
+            "tsConfig": "libs/ngx-datacontext/tsconfig.spec.json",
+            "setupFile": "libs/ngx-datacontext/src/test-setup.ts"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "defaultProject": "documentation"
+}
