@@ -47,7 +47,7 @@ different for the root (top-level) module for which you should end up with the c
 import { NgxDatacontextModule } from 'ngx-datacontext';
 
 @NgModule({
-  declarations: [AppComponent, ...],
+  declarations: [ AppComponent, ... ],
   imports: [NgxDatacontextModule.forRoot(), ...],  
   bootstrap: [AppComponent]
 })
