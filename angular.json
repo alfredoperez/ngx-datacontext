@@ -47,7 +47,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -91,13 +98,15 @@
       }
     },
     "documentation-e2e": {
-      "root": "apps/documentation-e2e/",
+      "root": "apps/documentation-e2e",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "apps/documentation-e2e/protractor.conf.js",
+            "cypressConfig": "apps/documentation-e2e/cypress.json",
+            "tsConfig": "apps/documentation-e2e/tsconfig.e2e.json",
             "devServerTarget": "documentation:serve"
           },
           "configurations": {
@@ -109,7 +118,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/documentation-e2e/tsconfig.e2e.json",
+            "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
@@ -117,9 +126,9 @@
         }
       }
     },
-    "documentation-ui": {
-      "root": "libs/documentation-ui",
-      "sourceRoot": "libs/documentation-ui/src",
+    "documentation-ui-home": {
+      "root": "libs/documentation-ui/home",
+      "sourceRoot": "libs/documentation-ui/home/src",
       "projectType": "library",
       "prefix": "ngx",
       "architect": {
@@ -127,8 +136,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/documentation-ui/tsconfig.lib.json",
-              "libs/documentation-ui/tsconfig.spec.json"
+              "libs/documentation-ui/home/tsconfig.lib.json",
+              "libs/documentation-ui/home/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -138,32 +147,60 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "libs/documentation-ui/jest.config.js",
-            "tsConfig": "libs/documentation-ui/tsconfig.spec.json",
-            "setupFile": "libs/documentation-ui/src/test-setup.ts"
+            "jestConfig": "libs/documentation-ui/home/jest.config.js",
+            "tsConfig": "libs/documentation-ui/home/tsconfig.spec.json",
+            "setupFile": "libs/documentation-ui/home/src/test-setup.ts"
           }
         }
       }
     },
-    "ngx-datacontext": {
-      "root": "libs/ngx-datacontext",
-      "sourceRoot": "libs/ngx-datacontext/src",
+    "documentation-ui-getting-started": {
+      "root": "libs/documentation-ui/getting-started",
+      "sourceRoot": "libs/documentation-ui/getting-started/src",
       "projectType": "library",
-      "prefix": "libs/ngx-datacontext",
+      "prefix": "ngx",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/documentation-ui/getting-started/tsconfig.lib.json",
+              "libs/documentation-ui/getting-started/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/documentation-ui/getting-started/jest.config.js",
+            "tsConfig": "libs/documentation-ui/getting-started/tsconfig.spec.json",
+            "setupFile": "libs/documentation-ui/getting-started/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "prefix": "ngx-datacontext",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "libs/ngx-datacontext/tsconfig.lib.json",
-            "project": "libs/ngx-datacontext/ng-package.json"
+            "tsConfig": "libs/core/tsconfig.lib.json",
+            "project": "libs/core/ng-package.json"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ngx-datacontext/tsconfig.lib.json",
-              "libs/ngx-datacontext/tsconfig.spec.json"
+              "libs/core/tsconfig.lib.json",
+              "libs/core/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -173,9 +210,9 @@
         "test": {
           "builder": "@nrwl/builders:jest",
           "options": {
-            "jestConfig": "libs/ngx-datacontext/jest.config.js",
-            "tsConfig": "libs/ngx-datacontext/tsconfig.spec.json",
-            "setupFile": "libs/ngx-datacontext/src/test-setup.ts"
+            "jestConfig": "libs/core/jest.config.js",
+            "tsConfig": "libs/core/tsconfig.spec.json",
+            "setupFile": "libs/core/src/test-setup.ts"
           }
         }
       }
@@ -186,7 +223,8 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "yarn"
   },
   "defaultProject": "documentation"
 }

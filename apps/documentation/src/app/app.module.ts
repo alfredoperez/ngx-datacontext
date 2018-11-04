@@ -4,21 +4,27 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
 import { RouterModule } from '@angular/router';
-import {AppSharedModule} from './shared';
+import { AppSharedModule } from './shared';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     NxModule.forRoot(),
+    NgbModule,
     AppSharedModule,
     RouterModule.forRoot(
       [
-        { path: '', pathMatch: 'full', redirectTo: '/documentation-ui' },
+        { path: '', pathMatch: 'full', redirectTo: '/home' },
         {
-          path: 'documentation-ui',
+          path: 'home',
+          loadChildren: '@ngx-datacontext/documentation-ui/home#HomeModule'
+        },
+        {
+          path: 'getting-started',
           loadChildren:
-            '@ngx-datacontext/documentation-ui#DocumentationUiModule'
+            '@ngx-datacontext/documentation-ui/getting-started#GettingStartedModule'
         }
       ],
       { initialNavigation: 'enabled' }

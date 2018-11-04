@@ -1,14 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
 
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 @import '~font-awesome/scss/font-awesome';
-@import "~include-media/dist/include-media";
+@import '~include-media/dist/include-media';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 // 'include-media' plugging into Bootstrap 4's Grid Breakpoints map
 $breakpoints: $grid-breakpoints;
-@include media("<md") {
+@include media('<md') {
   .jumbotron {
     //margin-top: 3.4rem;
     margin-bottom: 0rem;
@@ -20,12 +19,12 @@ $breakpoints: $grid-breakpoints;
       font-size: 1.2rem;
     }
     .btn {
-      margin: .5rem;
+      margin: 0.5rem;
     }
   }
 }
 
-@include media(">=md") {
+@include media('>=md') {
   .jumbotron {
     // margin-top: 3.4rem;
     margin-bottom: 0rem;

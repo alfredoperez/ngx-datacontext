@@ -11,6 +11,8 @@
   "include": [
     "**/*.ts"
   
-    , "../../libs/documentation-ui/src/index.ts"
+    , "../../libs/documentation-ui/home/src/index.ts"
+
+    , "../../libs/documentation-ui/getting-started/src/index.ts"
 ]
 }

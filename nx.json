@@ -14,10 +14,13 @@
     "documentation-e2e": {
       "tags": []
     },
-    "documentation-ui": {
+    "documentation-ui-home": {
       "tags": []
     },
-    "ngx-datacontext": {
+    "documentation-ui-getting-started": {
+      "tags": []
+    },
+    "core": {
       "tags": []
     }
   }

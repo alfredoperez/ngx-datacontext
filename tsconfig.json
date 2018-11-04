@@ -16,11 +16,14 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@ngx-datacontext/documentation-ui": [
-        "libs/documentation-ui/src/index.ts"
+      "@ngx-datacontext/documentation-ui/home": [
+        "libs/documentation-ui/home/src/index.ts"
       ],
-      "@ngx-datacontext/ngx-datacontext": [
-        "libs/ngx-datacontext/src/index.ts"
+      "@ngx-datacontext/documentation-ui/getting-started": [
+        "libs/documentation-ui/getting-started/src/index.ts"
+      ],
+      "@ngx-datacontext/core": [
+        "libs/core/src/index.ts"
       ]
     }
   },
