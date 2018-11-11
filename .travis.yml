@@ -10,6 +10,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   - ng build --prod --base-href https://alfredoperez.github.io/ngx-datacontext/
+  - npm run build:doc
 deploy:
   provider: pages
   skip_cleanup: true
