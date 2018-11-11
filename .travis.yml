@@ -14,6 +14,6 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: dist/ngx-datacontext
+  local_dir: dist/apps/documentation/
   on:
     branch: master
