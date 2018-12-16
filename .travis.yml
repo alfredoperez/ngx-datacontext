@@ -18,3 +18,4 @@ deploy:
   local_dir: dist/apps/documentation/
   on:
     branch: master
+   
