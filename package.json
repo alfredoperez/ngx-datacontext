@@ -1,7 +1,22 @@
 {
   "name": "ngx-datacontext",
-  "version": "0.0.0",
+  "description": "Data context service for Angular applications to easily create data services and link them to entities.",
+  "version": "0.10.0",
+  "homepage": "https://github.com/alfredoperez/ngx-datacontext",
+  "author": {
+    "name": "Alfredo Perez",
+    "url": "https://github.com/alfredoperez"
+  },
   "license": "MIT",
+  "keywords": [
+    "ng",
+    "angular",
+    "library.datacontext",
+    "entity"
+  ],
+  "bugs": {
+    "url": "https://github.com/alfredoperez/ngx-datacontext/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,9 +41,19 @@
     "help": "./node_modules/.bin/nx help",
     "build:doc": "./node_modules/.bin/compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc ",
     "serve:doc": "./node_modules/.bin/compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc -s",
+    "build:lib": "ng build core",
+    "publish:minor":"npm version minor && build:lib",
+    "npm_pack": "cd dist/ng-core && npm pack",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
     "affected": "./node_modules/.bin/nx affected"
   },
   "private": true,
+  "peerDependencies": {
+    "@angular/fire": "^5.1.0",
+    "lodash": "^4.17.11"
+  },
   "dependencies": {
     "@angular/animations": "^7.0.0",
     "@angular/common": "^7.0.0",
@@ -74,6 +99,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "cypress": "^3.1.0",
+    "generate-changelog": "^1.7.1",
     "husky": "^1.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-marbles": "0.4.0",
