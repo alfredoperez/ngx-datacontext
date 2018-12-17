@@ -1,3 +1,9 @@
+#### 0.2.1 (2018-12-17)
+
+##### Bug Fixes
+
+*  script now modifies version of library package.json ([606747e1](https://github.com/alfredoperez/ngx-datacontext/commit/606747e1b2d1dbe6f72094a544d5dd531cc418ad))
+
 ### 0.2.0 (2018-12-17)
 
 ### 0.1.0 (2018-12-17)
