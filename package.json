@@ -41,9 +41,9 @@
     "build:lib-pack": "ng build core && cd dist/libs/core && npm pack",
     "copy-readme": "copy .\\README.md .\\dist\\libs\\core",
     "pre-publish:minor": "npm run release:minor && npm run copy-readme && npm run build:lib-pack",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm version major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm version minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm version patch && git push origin && git push origin --tags",
     "affected": "nx affected"
   },
   "private": true,
