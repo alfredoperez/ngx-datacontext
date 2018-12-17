@@ -2,6 +2,21 @@
 
 ##### Documentation Changes
 
+*  updated CHANGELOG.md ([19df4309](https://github.com/alfredoperez/ngx-datacontext/commit/19df4309aee08ad9acd9fccf77ef7be3ecca1a8e))
+*  updated CHANGELOG.md ([b2892c56](https://github.com/alfredoperez/ngx-datacontext/commit/b2892c56af059eb0fd64d4a75c01fabcbbd2bf10))
+
+##### Bug Fixes
+
+*  script now modifies version of library package.json ([606747e1](https://github.com/alfredoperez/ngx-datacontext/commit/606747e1b2d1dbe6f72094a544d5dd531cc418ad))
+
+##### Refactors
+
+*  adds script to increase version ([0f9dcbb1](https://github.com/alfredoperez/ngx-datacontext/commit/0f9dcbb125b2a78be4389b0721358ed24f2a5603))
+
+#### 0.2.1 (2018-12-17)
+
+##### Documentation Changes
+
 *  updated CHANGELOG.md ([b2892c56](https://github.com/alfredoperez/ngx-datacontext/commit/b2892c56af059eb0fd64d4a75c01fabcbbd2bf10))
 
 ##### Bug Fixes
