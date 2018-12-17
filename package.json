@@ -1,12 +1,9 @@
 {
-  "name": "ngx-datacontext",
+  "name": "@ngx-datacontext/core",
   "description": "Data context service for Angular applications to easily create data services and link them to entities.",
-  "version": "0.11.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/alfredoperez/ngx-datacontext",
-  "author": {
-    "name": "Alfredo Perez",
-    "url": "https://github.com/alfredoperez"
-  },
+  "author": "Alfredo Perez (https://github.com/alfredoperez)",
   "license": "MIT",
   "keywords": [
     "ng",
@@ -22,31 +19,32 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "./node_modules/.bin/nx lint && ng lint",
+    "lint": "nx lint && ng lint",
     "e2e": "ng e2e",
-    "affected:apps": "./node_modules/.bin/nx affected:apps",
-    "affected:libs": "./node_modules/.bin/nx affected:libs",
-    "affected:build": "./node_modules/.bin/nx affected:build",
-    "affected:e2e": "./node_modules/.bin/nx affected:e2e",
-    "affected:test": "./node_modules/.bin/nx affected:test",
-    "affected:lint": "./node_modules/.bin/nx affected:lint",
-    "affected:dep-graph": "./node_modules/.bin/nx affected:dep-graph",
-    "format": "./node_modules/.bin/nx format:write",
-    "format:write": "./node_modules/.bin/nx format:write",
-    "format:check": "./node_modules/.bin/nx format:check",
+    "affected:apps": "nx affected:apps",
+    "affected:libs": "nx affected:libs",
+    "affected:build": "nx affected:build",
+    "affected:e2e": "nx affected:e2e",
+    "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check",
     "update": "ng update @nrwl/schematics",
     "update:check": "ng update",
-    "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
-    "dep-graph": "./node_modules/.bin/nx dep-graph",
-    "help": "./node_modules/.bin/nx help",
-    "build:doc": "./node_modules/.bin/compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc ",
-    "serve:doc": "./node_modules/.bin/compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc -s",
+    "workspace-schematic": "nx workspace-schematic",
+    "dep-graph": "nx dep-graph",
+    "help": "nx help",
+    "build:doc": "compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc ",
+    "serve:doc": "compodoc -p libs/core/tsconfig.lib.json --theme Readthedocs -d dist/apps/documentation/compodoc -s",
     "build:lib-pack": "ng build core && cd dist/libs/core && npm pack",
-    "pre-publish:minor": "npm run release:minor && npm run build:lib-pack",
+    "copy-readme": "copy .\\README.md .\\dist\\libs\\core",
+    "pre-publish:minor": "npm run release:minor && npm run copy-readme && npm run build:lib-pack",
     "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags",
     "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags",
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'docs: updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags",
-    "affected": "./node_modules/.bin/nx affected"
+    "affected": "nx affected"
   },
   "private": true,
   "peerDependencies": {
@@ -124,5 +122,10 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "main": "./dist/libs/core/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfredoperez/ngx-datacontext.git"
   }
 }
