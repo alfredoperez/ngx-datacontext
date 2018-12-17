@@ -43,15 +43,13 @@
     "pre-publish:minor": "npm run release:minor && npm run copy-readme && npm run build:lib-pack",
     "pre-publish:major": "npm run release:major && npm run copy-readme && npm run build:lib-pack",
     "pre-publish:patch": "npm run release:patch && npm run copy-readme && npm run build:lib-pack",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && cd dist/libs/core && npm version major && npm version major && git push origin && git push origin --tags",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && cd dist/libs/core && npm version minor && git push origin && git push origin --tags",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && cd dist/libs/core && npm version patch && git push origin && git push origin --tags",
+    "increase-version:major": "cd libs/core && npm version major",
+    "increase-version:minor": "cd libs/core && npm version minor",
+    "increase-version:patch": "cd libs/core && npm version patch",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm run increase-version:major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm run increase-version:minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m \"docs: updated CHANGELOG.md\" && npm run increase-version:patch && git push origin && git push origin --tags",
     "affected": "nx affected"
-  },
-  "private": true,
-  "peerDependencies": {
-    "@angular/fire": "^5.1.0",
-    "lodash": "^4.17.11"
   },
   "dependencies": {
     "@angular/animations": "^7.0.0",
