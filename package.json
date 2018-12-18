@@ -1,7 +1,7 @@
 {
   "name": "@ngx-datacontext/core",
   "description": "Data context service for Angular applications to easily create data services and link them to entities.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/alfredoperez/ngx-datacontext",
   "author": "Alfredo Perez (https://github.com/alfredoperez)",
   "license": "MIT",
