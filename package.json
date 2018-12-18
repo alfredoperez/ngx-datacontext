@@ -41,7 +41,7 @@
     "copy-readme": "copy .\\README.md .\\dist\\libs\\core",
     "copy-license": "copy .\\LICENSE .\\dist\\libs\\core",
     "copy-files": "run-s copy-readme copy-license",
-    "build:lib-pack": "ng build core && cd dist/libs/core && npm run copy-files && npm pack",
+    "build:lib-pack": "ng build core && npm run copy-files &&  cd dist/libs/core && npm pack",
     "bump-version:major": "npm version major && cd libs/core && npm version major && git add package.json",
     "bump-version:minor": "npm version minor && cd libs/core && npm version minor && git add package.json",
     "bump-version:patch": "npm version patch && cd libs/core && npm version patch && git add package.json",
@@ -49,9 +49,9 @@
     "update-changelog:minor": "changelog -m && git add CHANGELOG.md",
     "update-changelog:patch": "changelog -p && git add CHANGELOG.md",
     "commit-git": "git commit -m \"build: adds new release\" && git push origin && git push origin --tags",
-    "pre-publish:minor": "run-s bump-version:minor update-changelog:minor build:lib-pack commit-git",
-    "pre-publish:major": "run-s bump-version:major update-changelog:major build:lib-pack commit-git",
-    "pre-publish:patch": "run-s bump-version:patch update-changelog:patch build:lib-pack commit-git",
+    "pre-publish:minor": "run-s update-changelog:minor bump-version:minor  build:lib-pack commit-git",
+    "pre-publish:major": "run-s update-changelog:major bump-version:major build:lib-pack commit-git",
+    "pre-publish:patch": "run-s update-changelog:patch bump-version:patch build:lib-pack commit-git",
     "affected": "nx affected"
   },
   "dependencies": {

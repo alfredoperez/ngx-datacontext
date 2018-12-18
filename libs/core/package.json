@@ -1,6 +1,23 @@
 {
   "name": "@ngx-datacontext/core",
-  "version": "0.0.5",
+  "description": "Data context service for Angular applications to easily create data services and link them to entities.",
+  "version": "0.0.6",
+  "homepage": "https://github.com/alfredoperez/ngx-datacontext",
+  "author": "Alfredo Perez (https://github.com/alfredoperez)",
+  "license": "MIT",
+  "keywords": [
+    "ng",
+    "angular",
+    "library.datacontext",
+    "entity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfredoperez/ngx-datacontext.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alfredoperez/ngx-datacontext/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
