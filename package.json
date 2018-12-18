@@ -1,7 +1,7 @@
 {
   "name": "@ngx-datacontext/core",
   "description": "Data context service for Angular applications to easily create data services and link them to entities.",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "homepage": "https://github.com/alfredoperez/ngx-datacontext",
   "author": "Alfredo Perez (https://github.com/alfredoperez)",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "copy-readme": "copy .\\README.md .\\dist\\libs\\core",
     "copy-license": "copy .\\LICENSE .\\dist\\libs\\core",
     "copy-files": "run-s copy-readme copy-license",
-    "build:lib-pack": "ng build core && cd dist/libs/core && copy-files && npm pack",
+    "build:lib-pack": "ng build core && cd dist/libs/core && npm run copy-files && npm pack",
     "bump-version:major": "npm version major && cd libs/core && npm version major && git add package.json",
     "bump-version:minor": "npm version minor && cd libs/core && npm version minor && git add package.json",
     "bump-version:patch": "npm version patch && cd libs/core && npm version patch && git add package.json",
